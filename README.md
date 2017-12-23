@@ -32,7 +32,7 @@ The Readables App works with -
 14. uuid : 3.1.0
 
 
-Steps to launch the MyReads App:
+Steps to launch the Readables App:
 --------------------------------
 1. Launch cmd(in Windows) or Terminal (in MacOS).
 2. Navigate to the folder containing all the files of this repository.
