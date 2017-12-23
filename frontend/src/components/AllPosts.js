@@ -8,17 +8,20 @@ import { connect } from 'react-redux'
 import AddNewPost from './AddNewPost'
 import { addPost, addCategories, thunkPostVote } from '../actions'
 import PostVoteScore from './PostVoteScore'
+import sortBy from 'sort-by'
+import Moment from 'react-moment'
 
 class AllPosts extends Component {
 
 	state = {
 		allCategories: [],
 		categoryChosen: "",
-	    sortOptions: ["votes", "timestamp"],
+	    sortOptions: ["voteScore", "timestamp"],
+	    sortbySelected: "voteScore",
 		modalOpenFlag: false,
 		votes: null,
 		posts: [],
-		path:""
+		path:"",
 	}
 
 	componentDidMount() {
@@ -60,6 +63,10 @@ class AllPosts extends Component {
 
 	}
 
+	sortBySelection = (e) => {
+		this.setState({ sortbySelected: e.target.value })
+	}
+
 
 	// adding a post to a local state
 	addNewPostToLocalState = (post) => {
@@ -87,8 +94,15 @@ class AllPosts extends Component {
   	const posts = this.state.categoryChosen === "All Categories"
   				? this.props.posts 
   				: this.props.posts.filter((post) => post.category === this.props.match.params.category)
+  	
+  	if(this.state.sortbySelected !== '') {
+		posts.sort(sortBy(this.state.sortbySelected))
+		console.log( "sorted selection ", this.state.sortbySelected)
+	}
+
   	const { allCategories, sortOptions, categoryChosen, modalOpenFlag } = this.state
   	console.log("all props", this.props)
+	console.log("posts", posts)
   	
 	// console.log("all posts", allPosts)
 
@@ -125,9 +139,9 @@ class AllPosts extends Component {
 		    		Sort By:
 	    		</li>
 	    		<li>
-		    		<select>
+		    		<select value={this.state.sortbySelected} onChange={(e) => this.sortBySelection(e)}>
 		    			{sortOptions.map((opt) => (
-		    				<option key={opt}>{capitalize(opt)}</option>      			
+		    				<option value={opt} key={opt}>{capitalize(opt)}</option>      			
 		    			))}
 		    		</select>
 	    		</li>
@@ -149,6 +163,7 @@ class AllPosts extends Component {
 							<Link to={`/${post.category}/${post.id}`}> {capitalize(post.title)}</Link><br />
 							<span>Posted By: {post.author}</span><br />
 							<span>Comments: {post.commentCount}</span><br />
+							<Moment>{ post.timestamp }</Moment><br />
 							<PostVoteScore 
 								votes={ post.voteScore }
 								id={ post.id }

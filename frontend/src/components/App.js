@@ -39,7 +39,7 @@ class App extends Component {
     return (
       <div className="container">
       	<div className="header">
-          <h1>Readables App</h1>
+          <h1><Link to="/">Readables App</Link></h1>
         </div>
 
         <Route exact path='/' render={(props) => (

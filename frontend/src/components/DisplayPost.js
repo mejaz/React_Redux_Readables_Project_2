@@ -13,6 +13,7 @@ import { thunkPostVote, addPost, thunkAddComment, thunkDeletePost,
 import FaTrashO from 'react-icons/lib/fa/trash-o'
 import FaEdit from 'react-icons/lib/fa/edit'
 import EditPost from './EditPost'
+import Moment from 'react-moment'
 
 
 class DisplayPost extends Component {
@@ -91,7 +92,7 @@ class DisplayPost extends Component {
 					<div className="post-info">
 						<b>Posted By</b>: { capitalize(author) }<br />
 						<b>Comments count</b>: { commentCount } <br />
-						<b>Date</b>: { timestamp } <br />
+						<b>Date</b>: <Moment>{ timestamp }</Moment> <br />
 					</div>
 					<div className="post-controls">
 

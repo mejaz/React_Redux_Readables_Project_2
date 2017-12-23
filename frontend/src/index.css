@@ -15,11 +15,17 @@ body {
 	text-align: center;
 	background-color: lightblue;
 	border-bottom: 1px black solid;
+
 }
 
 .header h1 {
 	margin: 0;
 	padding: 10px 0px;
+	
+}
+.header a {
+	text-decoration: none;
+	color: black;
 }
 
 .page-options-grid {

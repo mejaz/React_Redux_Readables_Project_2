@@ -1,3 +1,5 @@
+
+
 export function capitalize (str) {
   
   return (typeof str === 'undefined' || typeof str !== "string") || str === ''
@@ -11,3 +13,4 @@ export function checkUndefined (str = '') {
 	? ''
 	: str
 }
+
