@@ -97,8 +97,8 @@ class AddNewPost extends Component {
 
 					<label htmlFor="title">Title:</label>
 					<input type="text" name="title" id="title" onChange={this.handleChange}/><br /><br />
-					<label htmlFor="body">Content:</label>
-					<textarea name="body" id="body" onChange={this.handleChange}/> <br /><br />
+					<label className="contentLabel" htmlFor="body">Content:</label>
+					<textarea name="body" id="body" rows='10' cols='80' onChange={this.handleChange}/> <br /><br />
 					<button type="submit">Submit</button>
 				</form>
 

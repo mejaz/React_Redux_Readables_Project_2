@@ -13,7 +13,7 @@ body {
 
 .header {
 	text-align: center;
-	background-color: lightblue;
+	background-color: #5d5da0;
 	border-bottom: 1px black solid;
 
 }
@@ -25,6 +25,10 @@ body {
 }
 .header a {
 	text-decoration: none;
+	color: white;
+}
+
+.header a:hover {
 	color: black;
 }
 
@@ -139,4 +143,6 @@ body {
 	text-align: center;
 }
 
-
+.contentLabel {
+	margin: 0px 0px;
+}

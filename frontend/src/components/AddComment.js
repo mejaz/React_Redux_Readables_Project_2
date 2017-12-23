@@ -50,7 +50,7 @@ class AddComment extends Component {
 		return (
 			<form className="add-comment" onSubmit={this.commentSubmit}>
 				
-				<textarea value={this.state.comment} onChange={this.handleChange}></textarea><br />
+				<textarea value={this.state.comment} onChange={this.handleChange} placeholder="Comment..."></textarea><br />
 				<button onClick={() => this.props.addCommentBox(false)}>Cancel</button>
 				<input type="submit" value="Submit" />
 				
