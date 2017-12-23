@@ -16,29 +16,20 @@ Configuration:
 --------------
 The Readables App works with -
 
-1. react : 15.6.2
-2. react-dom : 15.6.2
+1. react : 16.2.0
+2. react-dom : 12.2.0
 3. react-router-dom : 4.2.2
-4. prop-types : 15.5.8
-5. font-awesome@4.7.0
-├── import@0.0.6
-├── moment@2.20.1
-├── prop-types@15.6.0
-├── react@16.2.0
-├── react-dom@16.2.0
-├── react-form@2.14.4
-├── react-icons@2.2.7
-├── react-modal@3.1.8
-├── react-moment@0.6.8
-├── react-redux@5.0.6
-├── react-router@4.2.0
-├── react-router-dom@4.2.2
-├── react-router-redux@4.0.8
-├── react-scripts@1.0.17
-├── redux@3.7.2
-├── redux-thunk@2.2.0
-├── sort-by@1.2.0
-└── uuid@3.1.0
+4. font-awesome : 4.7.0
+5. moment : 2.20.1
+6. react-icons : 2.2.7
+7. react-modal : 3.1.8
+8. react-moment : 0.6.8
+9. react-redux : 5.0.6
+10. react-router : 4.2.0
+11. redux : 3.7.2
+12. redux-thunk : 2.2.0
+13. sort-by : 1.2.0
+14. uuid : 3.1.0
 
 
 Steps to launch the MyReads App:
@@ -47,17 +38,93 @@ Steps to launch the MyReads App:
 2. Navigate to the folder containing all the files of this repository.
 3. Run the command - `npm install`
 4. Run the command - `npm start`
-5. The MyReads application will start at local host port 3000 - http://127.0.0.1:3000
+5. The Readables application will start at local host port 3000 - http://127.0.0.1:3000
 
 
-API Endpoints used in the MyReads App:
+API Endpoints used in the Readables App:
 --------------------------------------
-Endpoint : https://reactnd-books-api.udacity.com
-1. GET /status
-2. GET /books
-3. GET /books/:id
-4. PUT /books/:id { shelf }
-5. POST /search { query, maxResults }
+Endpoint : http://127.0.0.1:3001
+	GET /categories
+      USAGE:
+        Get all of the categories available for the app. List is found in categories.js.
+        Feel free to extend this list as you desire.
+
+    GET /:category/posts
+      USAGE:
+        Get all of the posts for a particular category
+
+    GET /posts
+      USAGE:
+        Get all of the posts. Useful for the main page when no category is selected.
+
+    POST /posts
+      USAGE:
+        Add a new post
+
+      PARAMS:
+        id - UUID should be fine, but any unique id will work
+        timestamp - timestamp in whatever format you like, you can use Date.now() if you like
+        title - String
+        body - String
+        author - String
+        category: Any of the categories listed in categories.js. Feel free to extend this list as you desire.
+
+    GET /posts/:id
+      USAGE:
+        Get the details of a single post
+
+    POST /posts/:id
+      USAGE:
+        Used for voting on a post
+      PARAMS:
+        option - String: Either "upVote" or "downVote"
+
+    PUT /posts/:id
+      USAGE:
+        Edit the details of an existing post
+      PARAMS:
+        title - String
+        body - String
+
+    DELETE /posts/:id
+      USAGE:
+        Sets the deleted flag for a post to 'true'.
+        Sets the parentDeleted flag for all child comments to 'true'.
+
+    GET /posts/:id/comments
+      USAGE:
+        Get all the comments for a single post
+
+    POST /comments
+      USAGE:
+        Add a comment to a post
+
+      PARAMS:
+        id: Any unique ID. As with posts, UUID is probably the best here.
+        timestamp: timestamp. Get this however you want.
+        body: String
+        author: String
+        parentId: Should match a post id in the database.
+
+    GET /comments/:id
+      USAGE:
+        Get the details for a single comment
+
+    POST /comments/:id
+      USAGE:
+        Used for voting on a comment.
+
+    PUT /comments/:id
+      USAGE:
+        Edit the details of an existing comment
+
+      PARAMS:
+        timestamp: timestamp. Get this however you want.
+        body: String
+
+    DELETE /comments/:id
+      USAGE:
+        Sets a comment's deleted flag to 'true'
 
 
 
