@@ -1,0 +1,136 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.header {
+	text-align: center;
+	background-color: lightblue;
+	border-bottom: 1px black solid;
+}
+
+.header h1 {
+	margin: 0;
+	padding: 10px 0px;
+}
+
+.page-options-grid {
+	background-color: lightgrey;
+	border-bottom: 1px solid black; 
+}
+
+.page-options {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.page-options li {
+	padding: 0px 5px;
+}
+
+.addPostButton {
+	background-color: purple;
+	color: white;
+	border: 1px solid black;
+	border-radius: 15%;
+	padding-right: 5px; 
+}
+
+.addPostButton:hover {
+	background-color: green;
+	color: white;
+	cursor: pointer;
+}
+
+.category-name {
+	padding-left: 1%;
+}
+
+.all-posts {
+	list-style-type: none;
+
+}
+
+.all-posts li {
+	padding-left: 1%;
+	border-radius: 25px;
+	width: 90%;
+	border: 1px solid brown;
+}
+
+.post-desc {
+	padding-left: 1%;
+	padding-right: 1%;
+}
+
+.post-title {
+	text-align: center;
+}
+
+.post-category {
+	text-align: right;
+	padding-right: 2%;
+}
+
+.post-info-controls {
+	width: 100%;
+	/*clear: both;*/
+	/*display: flex;*/
+	/*flex-wrap: wrap;*/
+	/*justify-content: center;*/
+
+}
+
+.post-info {
+	display: inline-block;
+	/*text-align: left;*/
+	float: left;
+}
+.post-controls {
+	display: inline-block;
+	float: right; 
+	/*padding-left: 80%;*/
+
+}
+
+.comments-display {
+	padding: 1% 1%;
+	border-radius: 25px;
+	width: 90%;
+	border: 1px solid brown;	
+}
+
+.modal {
+  position: absolute;
+  top: 40px;
+  left: 200px;
+  right: 200px;
+  bottom: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  border-radius: 3px;
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,.24), 0 3px 12px 0 rgba(0,0,0,.15);
+  min-width: 500px;
+}
+
+.modal-input {
+	text-align: center;
+}
+
+
