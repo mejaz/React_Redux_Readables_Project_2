@@ -44,16 +44,6 @@ const posts = (state={}, action) => {
 			}
 
 
-
-		// case ADD_COMMENT:
-		// 	return {
-		// 		...state,
-		// 		[comment.parentId]: {
-		// 			...state[comment.parentId],
-		// 			[commentCount]: [commentCount] + 1
-		// 		}
-		// 	}
-
 		default:
 			return state
 	}

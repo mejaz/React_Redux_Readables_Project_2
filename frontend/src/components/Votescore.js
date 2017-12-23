@@ -9,8 +9,6 @@ class Votescore extends Component {
 
 	render() {
 		console.log("voting props", this.props)
-		// console.log(this.state)
-		// const { votes } = this.state
 		const { id, votes, voteUp, voteDown, source, parentId } = this.props
 
 		return (

@@ -44,10 +44,11 @@ Steps to launch the MyReads App:
 API Endpoints used in the Readables App:
 --------------------------------------
 Endpoint : http://127.0.0.1:3001
-	GET /categories
+    The following endpoints are available:
+
+    GET /categories
       USAGE:
         Get all of the categories available for the app. List is found in categories.js.
-        Feel free to extend this list as you desire.
 
     GET /:category/posts
       USAGE:
@@ -125,7 +126,6 @@ Endpoint : http://127.0.0.1:3001
     DELETE /comments/:id
       USAGE:
         Sets a comment's deleted flag to 'true'
-
 
 
 Contact me:

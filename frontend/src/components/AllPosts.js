@@ -52,12 +52,10 @@ class AllPosts extends Component {
 			
 			this.setState({
 				categoryChosen: props.match.params.category,
-				// posts: newPosts
 			})
 		} else {
 			this.setState({
 				categoryChosen: "All Categories",
-				// posts: this.props.posts
 			})
 		}
 
@@ -103,10 +101,7 @@ class AllPosts extends Component {
   	const { allCategories, sortOptions, categoryChosen, modalOpenFlag } = this.state
   	console.log("all props", this.props)
 	console.log("posts", posts)
-  	
-	// console.log("all posts", allPosts)
 
-	// posts = posts.filter((post) => post.category === categoryChosen)
 		
 	return (
 
@@ -117,18 +112,6 @@ class AllPosts extends Component {
 		    		Category: 
 		    	</li>
 		    	<li><Link to="/">All Categories</Link></li>
-
-		    	{/*
-		    		<select onChange={this.filterByCategory} value={categoryChosen}>
-		    			<option value="All Categories" key="">All Categories</option>
-		      		{ allCategories.map((cat) => (
-		        		<option value={cat.name} key={cat.name}>
-		        			<a href={`/${cat.path}`}>{capitalize(cat.name)}</a>
-		        		</option>
-		      			))
-		      		}
-		    		</select>
-		    	*/}
 
 		    	{allCategories.map((cat) => (
 		    		<li><Link to={`/${cat.path}`}>{capitalize(cat.name)}</Link></li>
@@ -200,7 +183,6 @@ class AllPosts extends Component {
 function mapStateToProps({posts, comments, categories}) {
 	return {
 		posts: Object.keys(posts).map((key) => posts[key] ).filter((post) => post.deleted !== true),
-		// posts,
 		comments,
 		categories
 	}
@@ -216,5 +198,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AllPosts));
-// export default AllPosts
 

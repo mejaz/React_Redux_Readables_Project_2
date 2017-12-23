@@ -57,7 +57,6 @@ class AddNewPost extends Component {
 
 		const uuidv4 = require('uuid/v4')
 
-		// console.log("all state vals", this.state)
 		const postObj = {
 			id: uuidv4(),
 			timestamp: Date.now(),

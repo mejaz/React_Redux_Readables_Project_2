@@ -31,7 +31,6 @@ class DisplayComments extends Component {
 
 	render() {
 		
-		// const { id, parentId, timestamp, body, author, voteScore, deleted, parentDeleted } = this.state
 		console.log("disp comm", this.props)
 		const { comments, parentId, votingUp, votingDown, thunkDeleteComment} = this.props
 
@@ -50,7 +49,6 @@ class DisplayComments extends Component {
 							votes={comments[comnt_id].voteScore}
 							id={comnt_id}
 							votingFunc={ this.props.thunkCommentVote }
-							// voteDown={ this.props.thunkDownVote }
 							parentId={comments[comnt_id].parentId}						
 						/>
 						<button onClick={() => this.editComment(comments[comnt_id])}>

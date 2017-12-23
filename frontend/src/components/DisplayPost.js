@@ -19,8 +19,6 @@ import Moment from 'react-moment'
 class DisplayPost extends Component {
 
 	state = {
-		// remove all the below props, even empty will also work
-		//can be put into a store as Edit page componenet will also use this state
 		postid : null,
 		comments: {},
 		addCommentFlag: null,
@@ -65,12 +63,9 @@ class DisplayPost extends Component {
 
 	render() {
 
-		// console.log(this.props.posts[0])
-		// const singlePost = this.props.posts[0]
 		const { postid, editModalOpenFlag } = this.state
 		const { posts, votingUp, votingDown, deletingContent, addingComment } = this.props
 		const { id, title, category, body, author, commentCount, timestamp, voteScore } = checkUndefined(posts[postid])
-		// const { comments } = this.state.comments
 		console.log("disp post", this.props)
 		console.log(title)
 
@@ -104,7 +99,6 @@ class DisplayPost extends Component {
 							votes={ voteScore }
 							id={id}
 							votingFunc={ this.props.thunkPostVote }
-							// voteDown={ this.props.thunkDownVote }
 						 />	
 						
 						<button onClick={() => this.editPost()}>
@@ -161,7 +155,6 @@ class DisplayPost extends Component {
 
 function mapStateToProps({posts, comments}) {
 	return {
-		// posts: Object.keys(posts).map((key) => posts[key] ).filter((post) => post.deleted !== true),
 	    comments,
 	    posts
 	}
@@ -181,5 +174,5 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DisplayPost));
-// export default DisplayPost
+
 

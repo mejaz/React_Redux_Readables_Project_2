@@ -22,12 +22,6 @@ class EditPost extends Component {
 		}
 	}
 
-	// componentDidMount() {
-	// 	ReadsAPI.getCategories().then((allCategories) => 
-	// 			this.setState({
-	// 				allCategories
-	// 			}))
-	// }
 
 	handleChange = (e) => {
 
@@ -61,11 +55,7 @@ class EditPost extends Component {
 		}
 
 		console.log("postobj", postObj)
-		// ReadsAPI.postaPost(postObj).then((post) => {
-		// 	this.props.dispatchAddingPost({ post: post })
-		// 	this.props.closeNewPostModal()
-		// 	this.props.addNewPostToLocalState(post)
-		// 	})
+
 
 		this.props.thunkEditPost(postObj)
 		this.props.closeModal()
@@ -74,7 +64,7 @@ class EditPost extends Component {
 	render() {
 		console.log("edit post props", this.props)
 		const { title, body } = this.state
-		// const { id, title, body } = post
+
 
 		return (
 			<div>

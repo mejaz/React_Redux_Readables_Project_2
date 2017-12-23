@@ -8,8 +8,6 @@ class CommentVoteScore extends Component {
 
 	render() {
 		console.log("comment voting props", this.props)
-		// console.log(this.state)
-		// const { votes } = this.state
 		const { id, votes, votingFunc, parentId } = this.props
 
 		return (

@@ -96,22 +96,16 @@ body {
 
 .post-info-controls {
 	width: 100%;
-	/*clear: both;*/
-	/*display: flex;*/
-	/*flex-wrap: wrap;*/
-	/*justify-content: center;*/
 
 }
 
 .post-info {
 	display: inline-block;
-	/*text-align: left;*/
 	float: left;
 }
 .post-controls {
 	display: inline-block;
 	float: right; 
-	/*padding-left: 80%;*/
 
 }
 
