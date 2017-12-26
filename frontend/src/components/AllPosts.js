@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import FaPlusSquareO from 'react-icons/lib/fa/plus-square-o'
+import FaPlay from 'react-icons/lib/fa/play'
 import Modal from 'react-modal'
 import * as ReadsAPI from '../utils/api'
 import { capitalize, checkUndefined } from '../utils/helper'
 import { connect } from 'react-redux'
 import AddNewPost from './AddNewPost'
-import { addPost, addCategories, thunkPostVote } from '../actions'
+import { addPost, addCategories, thunkPostVote, thunkDeletePost, thunkEditPost } from '../actions'
 import PostVoteScore from './PostVoteScore'
 import sortBy from 'sort-by'
 import Moment from 'react-moment'
+import FaTrashO from 'react-icons/lib/fa/trash-o'
+import FaEdit from 'react-icons/lib/fa/edit'
+import EditPost from './EditPost'
+import FaListUI from 'react-icons/lib/fa/list-ul'
 
 class AllPosts extends Component {
 
@@ -22,6 +26,8 @@ class AllPosts extends Component {
 		votes: null,
 		posts: [],
 		path:"",
+		editModalOpenFlag: false,
+		editingPost: ""
 	}
 
 	componentDidMount() {
@@ -86,6 +92,21 @@ class AllPosts extends Component {
 		this.setState({modalOpenFlag: false})
 	}
 
+	deletingAPost = ({id}) => {
+		this.props.thunkDeletePost({id})
+		this.props.history.push('/')
+	}
+
+	editPost = (post) => {
+		this.setState({ 
+			editModalOpenFlag: true,
+			editingPost: post,
+			 })
+	}
+
+	closeEditPostModal = () => {
+		this.setState({ editModalOpenFlag: false })
+	}
 
 	render() {
 
@@ -106,8 +127,43 @@ class AllPosts extends Component {
 	return (
 
     <div className="app-body">
-    	<div className="page-options-grid">
-    		<ol className="page-options">
+    	<div className="all-post-list">
+				<h2 className="category-name">{ capitalize(this.state.categoryChosen) }</h2>
+				
+				<ul className="all-posts">
+					{posts.map((post) => (
+						<li key={post.id}>
+							<p>
+								<div className="all-post-hq">
+									<div className="all-post-info">
+										<Link to={`/${post.category}/${post.id}`}> {capitalize(post.title)}</Link><br />
+										<span>Comments: {post.commentCount}</span><br /><br />
+										<Moment>{ post.timestamp }</Moment><br />
+										<span>Posted By: {post.author}</span><br />
+										<PostVoteScore 
+											votes={ post.voteScore }
+											id={ post.id }
+											votingFunc={ this.props.thunkPostVote }
+										 />
+									</div>
+									<div className="all-posts-controls">
+										<button onClick={() => this.editPost(post)} >
+											<FaEdit size={25}/>
+										</button>
+										<button onClick={() => this.deletingAPost({id:post.id})}>
+											<FaTrashO size={25}/>
+										</button>
+									</div>
+								</div>
+							</p>
+						</li>
+					))}
+
+				</ul>
+    	</div>
+
+    	<div className="all-post-options">
+    		<ol className="categories">
     			<li>
 		    		Category: 
 		    	</li>
@@ -117,47 +173,23 @@ class AllPosts extends Component {
 		    		<li><Link to={`/${cat.path}`}>{capitalize(cat.name)}</Link></li>
 		    		))}
 
-	    		
-	    		<li>
+	    	</ol>
+	    	<ol>	
+	    		<li className="posts-vote-by">
 		    		Sort By:
-	    		</li>
-	    		<li>
 		    		<select value={this.state.sortbySelected} onChange={(e) => this.sortBySelection(e)}>
 		    			{sortOptions.map((opt) => (
 		    				<option value={opt} key={opt}>{capitalize(opt)}</option>      			
 		    			))}
 		    		</select>
 	    		</li>
-	    		<li>
-			      	<div className="addPostButton" onClick={() => this.openNewPostModal()}>
-			      		<FaPlusSquareO size={20} /> Add a Post
-			      	</div>
-		      	</li>
-	      	</ol>
+	      </ol>
+	      <div className="addPostButton" onClick={() => this.openNewPostModal()}>
+	      	Add Post <FaPlay />
+      	</div>
     	</div>
 
-    	<div>
-			<h2 className="category-name">{ capitalize(this.state.categoryChosen) }</h2>
-			
-			<ul className="all-posts">
-				{posts.map((post) => (
-					<li key={post.id}>
-						<p>
-							<Link to={`/${post.category}/${post.id}`}> {capitalize(post.title)}</Link><br />
-							<span>Posted By: {post.author}</span><br />
-							<span>Comments: {post.commentCount}</span><br />
-							<Moment>{ post.timestamp }</Moment><br />
-							<PostVoteScore 
-								votes={ post.voteScore }
-								id={ post.id }
-								votingFunc={ this.props.thunkPostVote }
-							 />							
-						</p>
-					</li>
-				))}
 
-			</ul>
-    	</div>
 
     	{/* New Post Modal */}
     	<Modal 
@@ -174,6 +206,22 @@ class AllPosts extends Component {
     			addNewPostToLocalState= { this.addNewPostToLocalState }
     			/>
     	</Modal>
+
+    	{/* Edit Post Modal */}
+    	<Modal 
+    		className="modal"
+    		overlayClassname="overlay"
+    		isOpen={ this.state.editModalOpenFlag }
+    		onRequestClose={ this.closeEditPostModal }
+    		contentLabel="Edit a Post"
+    		ariaHideApp={false}
+    	>
+    		<EditPost 
+    			thunkEditPost={ this.props.thunkEditPost }
+    			post={this.state.editingPost}
+    			closeModal={this.closeEditPostModal}
+    			/>
+    	</Modal>    	
     </div>
 
 		)
@@ -192,7 +240,9 @@ function mapDispatchToProps(dispatch) {
 	return {
 	    dispatchAddingPost: (data) => dispatch(addPost(data)),
 	    dispatchAddCategories: (data) => dispatch(addCategories(data)),
-	    thunkPostVote: (data) => dispatch(thunkPostVote(data))
+	    thunkPostVote: (data) => dispatch(thunkPostVote(data)),
+	    thunkDeletePost: (data) => dispatch(thunkDeletePost(data)),
+	    thunkEditPost: (data) => dispatch(thunkEditPost(data)),
 
 	}
 }

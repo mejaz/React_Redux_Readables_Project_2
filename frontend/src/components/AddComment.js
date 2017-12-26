@@ -8,21 +8,33 @@ class AddComment extends Component {
 		super(props)
 		this.state = {
 			comment: "",
+			author: ""
 		}
 	}
 
 	handleChange = (e) => {
-		this.setState({
-			comment: e.target.value
-		})
+
+		if(e.target.name === "comment-author") {
+			this.setState({
+				author: e.target.value
+			})
+		} else if(e.target.name === "comment-text") {
+			this.setState({
+				comment: e.target.value
+			})
+		}
+
 	}
 
 
 	commentSubmit = (e) => {
 		e.preventDefault()
 
-		if((this.state.comment).length === 0) {
-			alert("comment cannot be empty")
+		const comment = this.state.comment.trim()
+		const author = this.state.author.trim()
+
+		if(comment.length === 0 || author.length === 0) {
+			alert("comment / author cannot be empty")
 			return
 		}
 
@@ -32,8 +44,8 @@ class AddComment extends Component {
 			id: uuidv4(),
 			parentId: this.props.parentId,
 			timestamp: Date.now(),
-			body: this.state.comment,
-			author: "Anon",
+			body: comment,
+			author: author,
 			voteScore: 0,
 			deleted: false,
 			parentDeleted: false
@@ -48,13 +60,17 @@ class AddComment extends Component {
 
 	render() {
 		return (
-			<form className="add-comment" onSubmit={this.commentSubmit}>
-				
-				<textarea value={this.state.comment} onChange={this.handleChange} placeholder="Comment..."></textarea><br />
-				<button onClick={() => this.props.addCommentBox(false)}>Cancel</button>
-				<input type="submit" value="Submit" />
-				
-			</form>
+			<div className="add-comment-box">
+				<h3>Add Comment...</h3>
+				<form className="add-comment" onSubmit={this.commentSubmit}>
+					
+					<textarea name="comment-text" value={this.state.comment} onChange={this.handleChange} placeholder="Write Comment here..."></textarea><br />
+					<input name="comment-author" type="text" value={this.state.author} onChange={this.handleChange} placeholder="Author's name here...	"/><br /><br />
+					<button onClick={() => this.props.addCommentBox(false)}>Cancel</button>
+					<button type="submit" value="Submit">Submit</button>
+					
+				</form>
+			</div>
 			)
 	}
 }

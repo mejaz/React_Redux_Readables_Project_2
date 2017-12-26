@@ -123,12 +123,12 @@ export const editPost = ({ id, title, body }) =>
 		.then(post => post.json())
 
 // editing comment
-export const editComment = ({ id, body }) => 
+export const editComment = ({ id, body, author }) => 
 	fetch(`${api}/comments/${id}`, {
 		method: 'PUT',
 		headers: {
 			...headers,
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify({ body })})
+		body: JSON.stringify({ body, author })})	
 		.then(comment => comment.json())

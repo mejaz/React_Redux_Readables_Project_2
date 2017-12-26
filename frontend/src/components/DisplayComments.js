@@ -39,34 +39,38 @@ class DisplayComments extends Component {
 				{ comments && Object.keys(comments).map((comnt_id) => (
 					
 					(!comments[comnt_id].deleted) && <div key={ comnt_id } className="comments-display">
-						<textarea className="comments-box" value={ comments[comnt_id].body } readOnly>
-							
-						</textarea>
-						<br />
-						Posted By: { comments[comnt_id].author }
+						<div className="comment-display">
+							<div className="display-comment-box">
+								<textarea className="comments-box" value={ comments[comnt_id].body } readOnly></textarea>
+							</div>
+							<div className="comment-controls">
+								<button onClick={() => this.editComment(comments[comnt_id])}>
+									<FaEdit size={25} />
+								</button><br />
+								<button onClick={() => thunkDeleteComment({id:comnt_id, parentId: comments[comnt_id].parentId})}>
+									<FaTrashO size={25} />
+								</button>
+							</div>							
+						</div>
+						<div>
+							<br />
+							<label><b>Author</b></label>: <span>{ comments[comnt_id].author }</span>
 
-						<CommentVoteScore 
-							votes={comments[comnt_id].voteScore}
-							id={comnt_id}
-							votingFunc={ this.props.thunkCommentVote }
-							parentId={comments[comnt_id].parentId}						
-						/>
-						<button onClick={() => this.editComment(comments[comnt_id])}>
-							<FaEdit size={25} />
-						</button>
-						<button onClick={() => thunkDeleteComment({id:comnt_id, parentId: comments[comnt_id].parentId})}>
-							<FaTrashO size={25} />
-						</button>
+							<CommentVoteScore 
+								votes={comments[comnt_id].voteScore}
+								id={comnt_id}
+								votingFunc={ this.props.thunkCommentVote }
+								parentId={comments[comnt_id].parentId}						
+							/>
 
-						<br /><br />
-					</div>
-					
+						</div>
+					</div>					
 
 				))}
 
 		    	{/* Edit Comment Modal */}
 		    	<Modal 
-		    		className="modal"
+		    		className="edit-comment-modal"
 		    		overlayClassname="overlay"
 		    		isOpen={ this.state.editCommentModalFlag }
 		    		onRequestClose={ this.closeEditCommentModal }

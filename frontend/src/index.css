@@ -8,7 +8,8 @@ body {
   line-height: 1.5;
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
+  /*font-family: 'Arial', sans-serif;*/
+  font-family: "Lucida Console", Monaco, monospace;
 }
 
 .header {
@@ -51,16 +52,28 @@ body {
 }
 
 .addPostButton {
-	background-color: purple;
+	position: fixed;
+	top: 85%;
+	right: 5%;
+	padding: 1%;
+	width: 150px;
+	height:50px;
 	color: white;
-	border: 1px solid black;
-	border-radius: 15%;
-	padding-right: 5px; 
+	/*line-height: 40px;*/
+	background-color: #5d5da0;
+	/*font-size: 30px;*/
+	/*background-color: purple;*/
+	/*color: white;*/
+	/*border: 1px solid black;*/
+	border-radius: 5%;
+	text-align: center;
+	vertical-align: middle;
+	/*padding-right: 5px; */
 }
 
 .addPostButton:hover {
-	background-color: green;
-	color: white;
+	/*background-color: green;*/
+	color: black;
 	cursor: pointer;
 }
 
@@ -75,9 +88,9 @@ body {
 
 .all-posts li {
 	padding-left: 1%;
-	border-radius: 25px;
-	width: 90%;
-	border: 1px solid brown;
+	/*border-radius: 25px;*/
+	width: 100%;
+	border: 1px solid lightgrey;
 }
 
 .post-desc {
@@ -111,32 +124,269 @@ body {
 
 .comments-display {
 	padding: 1% 1%;
-	border-radius: 25px;
+	border-radius: 0px;
 	width: 90%;
-	border: 1px solid brown;	
+	border: 1px solid lightgrey;
 }
 
 .modal {
   position: absolute;
-  top: 40px;
+  top: 80px;
   left: 200px;
   right: 200px;
-  bottom: 40px;
+  /*bottom: 40px;*/
+  bottom: calc(vh - 40px);
   border: 1px solid rgb(204, 204, 204);
   background: rgb(255, 255, 255);
   overflow: auto;
   border-radius: 4px;
   outline: none;
-  padding: 20px;
+  padding: 1%;
+  padding-top: 0px;
   border-radius: 3px;
   box-shadow: 0 3px 8px 0 rgba(0,0,0,.24), 0 3px 12px 0 rgba(0,0,0,.15);
-  min-width: 500px;
+  min-width: 80px;
+}
+
+.edit-comment-modal {
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  right: 200px;
+  /*bottom: 230px;*/
+  bottom: calc(vh - 200px);
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 1%;
+  padding-top: 0px;
+  border-radius: 3px;
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,.24), 0 3px 12px 0 rgba(0,0,0,.15);
+  min-width: 80px;
 }
 
 .modal-input {
+	/*text-align: left;*/
+}
+
+.modal-input label {
+	/*font-family: "Lucida Console", Monaco, monospace;*/
+	width: 100px;
+	clear: left;
+	text-align: right;
+	padding-right: 5px;
+	font-size: 18px
+}
+.modal-input label, .modal-input input {
+	float: left
+}
+
+.modal-input select, .modal-input input {
+	width: 250px;
+	/*font-family: "Lucida Console", Monaco, monospace;*/
+	font-size: 18px
+
+}
+
+.modal-input input {
+	width: 630px;
+	/*font-family: "Lucida Console", Monaco, monospace;*/
+	font-size: 18px
+
+}
+
+.modal-input button {
+	/*font-family: "Lucida Console", Monaco, monospace;*/
+	width: 100px;
+	float: right;
+	text-align: center;
+	font-size: 18px
+}
+
+.new-post-content, .edit-post-content{
+	width: 80%;
+	height: 320px;
+	/*font-family: "Lucida Console", Monaco, monospace;*/
+	font-size: 18px
+}
+
+.modal-header {
+	background-color: #5d5da0;
+	color: white;
+	margin: 0px;
+	padding: 0px; 
 	text-align: center;
 }
 
-.contentLabel {
-	margin: 0px 0px;
+
+.add-comment button {
+	/*font-family: "Lucida Console", Monaco, monospace;*/
+	width: 100px;
+	/*float: right;*/
+	text-align: center;
+	font-size: 14px;
 }
+
+.comment-display {
+	margin-top: 10px;
+	margin-left: 10px;
+	width: 100%;
+}
+
+.comments-box {
+
+	min-width: 800px;
+	height: 60px;
+	/*font-family: "Lucida Console", Monaco, monospace;*/
+	font-size: 14px;
+	margin-right: 5px;
+}
+
+.display-comment-box {
+	float: left
+}
+
+.add-comment-box {
+	padding-left: 1%;
+	padding-bottom: 1%;
+	border-radius: 0px;
+	width: 90%;
+	border: 3px groove;
+}
+
+.add-comment textarea {
+	width: 700px;
+	height: 40px;
+	/*font-family: "Lucida Console", Monaco, monospace;*/
+	font-size: 14px
+}
+
+.add-comment input {
+	width: 300px;
+	height: 40px;
+	/*font-family: "Lucida Console", Monaco, monospace;*/
+	font-size: 14px
+}
+
+.edit-comment label {
+	float: left;
+	/*font-family: "Lucida Console", Monaco, monospace;*/
+	font-size: 18px;
+	width: 100px;
+	text-align: right;
+	padding-right: 5px;
+}
+
+.edit-comment textarea {
+	/*font-family: "Lucida Console", Monaco, monospace;*/
+	width: 700px;
+	height: 50px;
+	font-size: 18px
+}
+
+.edit-comment .comment-author {
+	width: 400px;
+	/*font-family: "Lucida Console", Monaco, monospace;*/
+	font-size: 18px
+}
+
+.edit-comment button {
+	/*font-family: "Lucida Console", Monaco, monospace;*/
+	font-size: 18px;
+	float: right;
+}
+.post-header {
+	line-height: 10px
+}
+
+.go-back {
+	margin: 0px;
+	padding: 0px;
+	color: blue;
+	text-decoration: underline;
+}
+
+.go-back:hover {
+	cursor: pointer;
+	
+}
+
+.footer {
+	clear: both;
+	background-color: #5d5da0;
+	text-align: center;
+	height: 40px;
+	color: white;
+	width: 100%;
+}
+
+.all-post-hq {
+	width:100%;
+	display: inline-block;
+}
+
+.all-post-info {
+	float: left;
+	width: 85%;
+}
+
+.app-body {
+	width: 100%;
+	margin: 0 auto;
+}
+.all-post-list {
+
+	float: left;
+	width: 70%;
+	margin: 0px;
+	padding: 0px;
+}
+.all-post-options {
+	
+	float: left;
+	margin: 0px;
+	padding-left: 50px;
+	width: 30%;
+	text-align: left;
+	margin-top: 5%;
+}
+
+.categories {
+	list-style-type: none;
+	position: fixed;
+}
+
+.categories a {
+	margin-left: 15px;
+	text-decoration: none;
+
+	padding: 5px;
+
+}
+
+.posts-vote-by {
+	list-style-type: none;
+	position: fixed;
+	top: 40%;
+}
+.posts-vote-by select {
+	width: 150px;
+	font-size: 14px;
+	height: 30px;
+	margin-left: 10px;
+}
+
+.add-comment-btn {
+	font-size: 14px;
+	font-family: "Lucida Console", Monaco, monospace;
+	border-radius: 5px;
+}
+
+.add-comment-btn:hover {
+	cursor: pointer;
+	background-color: #5d5da0;
+	color: white;
+}
+

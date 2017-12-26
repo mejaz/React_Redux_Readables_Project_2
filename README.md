@@ -35,10 +35,12 @@ The Readables App works with -
 Steps to launch the Readables App:
 --------------------------------
 1. Launch cmd(in Windows) or Terminal (in MacOS).
-2. Navigate to the folder containing all the files of this repository.
+2. Navigate to the folder containing all the files of this repository for the folder frontend.
 3. Run the command - `npm install`
 4. Run the command - `npm start`
 5. The Readables application will start at local host port 3000 - http://127.0.0.1:3000
+6. Navigate to api-server folder from this repository.
+7. Run the command - `node server.js`
 
 
 API Endpoints used in the Readables App:

@@ -68,12 +68,12 @@ class EditPost extends Component {
 
 		return (
 			<div>
-
+				<div className="modal-header"><h2>Edit Post</h2></div>
 				<form className="modal-input" onSubmit={this.postSubmit}>
-					<label htmlFor="title">Title</label>
-					<input type="text" name="title" id="title" onChange={this.handleChange} value={this.state.title}/><br />
-					<label htmlFor="body">Content</label>
-					<textarea name="body" id="body" onChange={this.handleChange} value={this.state.body}/><br />
+					<label htmlFor="title">Title:</label>
+					<input type="text" name="title" id="title" onChange={this.handleChange} value={this.state.title}/><br /><br />
+					<label htmlFor="body">Content:</label>
+					<textarea className="edit-post-content" name="body" id="body" onChange={this.handleChange} value={this.state.body}/><br />
 					<button type="submit">Submit</button>
 				</form>
 

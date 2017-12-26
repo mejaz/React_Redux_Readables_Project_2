@@ -4,6 +4,7 @@ import AllPosts from './AllPosts'
 import DisplayPost from './DisplayPost'
 import * as ReadsAPI from '../utils/api'
 import { connect } from 'react-redux'
+import NotFound404 from './NotFound404'
 
 
 class App extends Component {
@@ -28,12 +29,13 @@ class App extends Component {
       		)}
         />
         <Route exact path='/:category' render={(props) => (
-          <AllPosts {...props}
-      
-          />
-          )}
-        />
+          <AllPosts {...props}/>
+          )}>
+        </Route>
 
+        <Route exact path='/notfound' render={() => (
+            <NotFound404 />
+          )} />
 
       </div>
     )

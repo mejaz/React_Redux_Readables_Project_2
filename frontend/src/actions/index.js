@@ -162,9 +162,9 @@ export function editComment( { id, comment } ) {
 }
 
 // for edit a comment
-export function thunkEditComment({ id, body }) {
+export function thunkEditComment({ id, body, author }) {
 	return function(dispatch) {
-		return ReadsAPI.editComment({ id, body })
+		return ReadsAPI.editComment({ id, body, author })
 			.then((comment) => dispatch(editComment({ id, comment })))
 
 	}

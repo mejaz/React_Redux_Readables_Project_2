@@ -30,7 +30,9 @@ class DisplayPost extends Component {
 		ReadsAPI.getPostById(id).then((post) => {
 			
 			this.props.addingPost({post})
-			this.setState({ postid: post.id })
+			if (post.id) {
+				this.setState({ postid: post.id })
+			}
 		})
 
 		ReadsAPI.getCommentsOfPost(id).then((comments) => {
@@ -70,82 +72,92 @@ class DisplayPost extends Component {
 		console.log(title)
 
 		return (
-			<div className="post-desc">
-				<div className="post-header">
-					<div className="post-title">
-						<h2>{ capitalize(title) }</h2>
+			<div>
+			{ postid !== null 
+				? (
+					<div className="post-desc">
+						<div className="post-header">
+							<span className="go-back" onClick={this.props.history.goBack}>Go Back</span>
+							<div className="post-title">
+								<h2>{ capitalize(title) }</h2>
+							</div>
+							<div className="post-category">
+								<h3>Category: { capitalize(category) }</h3>
+							</div>
+						</div>
+						<p className="post-body">
+							{ body }
+						</p>
+
+						<div className="post-info-controls">
+							<div className="post-info">
+								<b>Posted By</b>: { capitalize(author) }<br /><br />
+								<b>Comments count</b>: { commentCount } <br />
+								<b>Date</b>: <Moment>{ timestamp }</Moment> <br />
+								<PostVoteScore 
+									votes={ voteScore }
+									id={id}
+									votingFunc={ this.props.thunkPostVote }
+								 />	
+
+							</div>
+							<div className="post-controls">
+								
+								<button onClick={() => this.editPost()}>
+									<FaEdit size={25}/>
+								</button>
+									
+								<button onClick={() => this.deletingAPost({id})}>
+									<FaTrashO size={25}/>
+								</button>
+								<br />
+								<button className="add-comment-btn" onClick={() => this.addCommentBox(true)} >
+									<FaPlusSquareO size={15} /> Comment
+								</button><br />						
+							</div>
+						</div>			
+
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<hr />
+						<div>
+							{ this.state.addCommentFlag 
+								? <AddComment 
+									parentId={ id } 
+									thunkAddComment={ this.props.thunkAddComment }
+									addCommentBox={this.addCommentBox}
+									/> 
+								: null }
+							<h3>Comments...</h3>	
+							<DisplayComments 
+								comments={ this.props.comments[id] } 
+								thunkDeleteComment={ this.props.thunkDeleteComment }
+							/>
+						</div>
+						<br />
+						<br />
+				    	{/* Edit Post Modal */}
+				    	<Modal 
+				    		className="modal"
+				    		overlayClassname="overlay"
+				    		isOpen={ editModalOpenFlag }
+				    		onRequestClose={ this.closeEditPostModal }
+				    		contentLabel="Edit a Post"
+				    		ariaHideApp={false}
+				    	>
+				    		<EditPost 
+				    			thunkEditPost={ this.props.thunkEditPost }
+				    			post={posts[postid]}
+				    			closeModal={this.closeEditPostModal}
+				    			/>
+				    	</Modal>
 					</div>
-					<div className="post-category">
-						<h3>Category: { capitalize(category) }</h3>
-					</div>
-				</div>
-				<p className="post-body">
-					{ body }
-				</p>
-
-				<div className="post-info-controls">
-					<div className="post-info">
-						<b>Posted By</b>: { capitalize(author) }<br />
-						<b>Comments count</b>: { commentCount } <br />
-						<b>Date</b>: <Moment>{ timestamp }</Moment> <br />
-					</div>
-					<div className="post-controls">
-
-						<button onClick={() => this.addCommentBox(true)} >
-							<FaPlusSquareO size={15} />Comment
-						</button><br />
-
-						<PostVoteScore 
-							votes={ voteScore }
-							id={id}
-							votingFunc={ this.props.thunkPostVote }
-						 />	
-						
-						<button onClick={() => this.editPost()}>
-							<FaEdit size={25}/>
-						</button>
-							
-						<button onClick={() => this.deletingAPost({id})}>
-							<FaTrashO size={25}/>
-						</button>
-					</div>
-				</div>			
-
-
-				<br />
-				<br />
-				<br />
-				<br />
-				<hr />
-				<div>
-					{ this.state.addCommentFlag 
-						? <AddComment 
-							parentId={ id } 
-							thunkAddComment={ this.props.thunkAddComment }
-							addCommentBox={this.addCommentBox}
-							/> 
-						: null }				
-					<DisplayComments 
-					comments={ this.props.comments[id] } 
-					thunkDeleteComment={ this.props.thunkDeleteComment }
-					/>
-				</div>
-
-		    	{/* Edit Post Modal */}
-		    	<Modal 
-		    		className="modal"
-		    		overlayClassname="overlay"
-		    		isOpen={ editModalOpenFlag }
-		    		onRequestClose={ this.closeEditPostModal }
-		    		contentLabel="Edit a Post"
-		    		ariaHideApp={false}
-		    	>
-		    		<EditPost 
-		    			thunkEditPost={ this.props.thunkEditPost }
-		    			post={posts[postid]}
-		    			closeModal={this.closeEditPostModal}
-		    			/>
-		    	</Modal>
+				) : <h3>No Posts Found for this search</h3>
+			}
 
 			</div>
 
