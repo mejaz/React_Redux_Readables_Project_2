@@ -40,7 +40,7 @@ Steps to launch the Readables App:
 4. Run the command - `npm start`
 5. The Readables application will start at local host port 3000 - http://127.0.0.1:3000
 6. Navigate to api-server folder from this repository.
-7. Run the command - `node server.js`
+7. Run the command - `node server.js` to run the server at port 3001 - http://127.0.0.1:3001
 
 
 API Endpoints used in the Readables App:
