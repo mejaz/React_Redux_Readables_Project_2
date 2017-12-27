@@ -8,7 +8,8 @@ import {
 	ADD_COMMENT, 
 	DELETE_COMMENT,
 	EDIT_COMMENT,
-	ADD_CATEGORY
+	ADD_CATEGORY,
+	UPDATE_POST
 } from '../actions'
 
 
@@ -42,6 +43,21 @@ const posts = (state={}, action) => {
 				...state,
 				[id]: post
 			}
+
+		case UPDATE_POST:
+			return {
+				...state,
+				[id]: post
+			}
+
+		// case DELETE_COMMENT:
+		// 	return {
+		// 		...state,
+		// 		[id]: {
+		// 			...state[id],
+		// 			"commentCount": [...state[id]["commentCount"]] + 1
+		// 		}
+		// 	}
 
 
 		default:

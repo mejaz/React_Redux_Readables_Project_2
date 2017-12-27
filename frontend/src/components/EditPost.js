@@ -42,15 +42,15 @@ class EditPost extends Component {
 	postSubmit = (e) => {
 		e.preventDefault()
 
-		if (((this.state.title).length === 0) || (((this.state.body).length) === 0 )) {
+		if (((this.state.title.trim()).length === 0) || (((this.state.body.trim()).length) === 0 )) {
 			alert("Title or Content cannot be blank!!")
 			return
 		}
 		
 		const postObj = {
-			id: this.state.id,
-			title: this.state.title,
-			body: this.state.body,
+			id: this.state.id.trim(),
+			title: this.state.title.trim(),
+			body: this.state.body.trim(),
 			
 		}
 

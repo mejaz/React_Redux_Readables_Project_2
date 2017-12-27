@@ -12,6 +12,7 @@ export const VOTE_COMMENT = 'VOTE_COMMENT'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
+export const UPDATE_POST = "UPDATE_POST"
 
 // category constants
 export const ADD_CATEGORY = 'ADD_CATEGORY'
@@ -104,6 +105,26 @@ export function thunkDeleteComment({id, parentId}) {
 	return function(dispatch) {
 		return ReadsAPI.deleteComment(id)
 			.then((comment) => dispatch(deleteComment({id, comment, parentId})))
+			.then(() => dispatch(thunkUpdatePost([parentId])))
+	}
+}
+
+// update Post
+export function updatePost({id, post}) {
+	return {
+		type: UPDATE_POST,
+		id,
+		post
+	}
+}
+
+// thunk update post
+export function thunkUpdatePost(id) {
+	console.log("update post",id)
+	return function(dispatch) {
+		return ReadsAPI.getPostDetail(id)
+			.then((post) => dispatch(updatePost({id, post})))
+
 	}
 }
 
@@ -121,6 +142,7 @@ export function thunkAddComment(comment) {
 	return function(dispatch) {
 		return ReadsAPI.addComment(comment)
 			.then((comment) => dispatch(addComment(comment)))
+			.then(() => dispatch(thunkUpdatePost(comment.parentId)))
 
 	}
 }

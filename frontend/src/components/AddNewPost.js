@@ -57,7 +57,11 @@ class AddNewPost extends Component {
 	postSubmit = (e) => {
 		e.preventDefault()
 
-		if (((this.state.title.trim()).length === 0) || (((this.state.body.trim()).length) === 0 ) || (((this.state.author.trim()).length) === 0 )) {
+		const title = this.state.title.trim()
+		const body = this.state.body.trim()
+		const author = this.state.author.trim()
+
+		if ((title.length === 0) || (body.length === 0 ) || (author.length === 0 )) {
 			alert("Title / Content / Author cannot be blank!!")
 			return
 		}
@@ -67,10 +71,10 @@ class AddNewPost extends Component {
 		const postObj = {
 			id: uuidv4(),
 			timestamp: Date.now(),
-			title: this.state.title,
-			body: this.state.body,
-			category: this.state.value.toLowerCase(),
-			author: this.state.author,
+			title: title,
+			body: body,
+			category: this.state.value.trim().toLowerCase(),
+			author: author,
 			voteScore: 0,
 			deleted: false,
 			commentCount: 0
